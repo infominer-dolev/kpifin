@@ -1,8 +1,9 @@
 <template>
 
-  <searchBar></searchBar><br><br>
-  
-  <tikSintetik></tikSintetik>
+    <searchBar></searchBar>
+    <br><br>
+
+    <tikSintetik></tikSintetik>
 </template>
 
 
@@ -13,23 +14,21 @@ import axios from "axios";
 import storeManager from "@/storeManager"; // corrected file extension
 
 export default {
-  data() {
-    return {
-    }
-  },
-  components: {
-    searchBar,
-    tikSintetik
-  },
-  methods: {
-  },async mounted () {
-      const hasifot=await axios.get(process.env.VUE_APP_SERVER_HOST+`rstsrv/readHasifot/list`)
-          storeManager.storeHasifot(this,hasifot.data.Rows);
-      const yields=await axios.get(process.env.VUE_APP_SERVER_HOST+`rstsrv/readYields/list`)
-        storeManager.storeYields(this,yields.data.Rows);
-    console.log(this.$store)
-;
-  },
+    data() {
+        return {}
+    },
+    components: {
+        searchBar,
+        tikSintetik
+    },
+    methods: {}, async mounted() {
+        const hasifot = await axios.get(process.env.VUE_APP_SERVER_HOST + `rstsrv/readHasifot/list`)
+        storeManager.storeHasifot(this, hasifot.data.Rows);
+        const yields = await axios.get(process.env.VUE_APP_SERVER_HOST + `rstsrv/readYields/list`)
+        storeManager.storeYields(this, yields.data.Rows);
+        console.log(this.$store)
+        ;
+    },
 }
 </script>
 
