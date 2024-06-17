@@ -23,9 +23,9 @@ export default {
   },
   methods: {
   },async mounted () {
-      const hasifot=await axios.get(`http://localhost:58822/rstsrv/readHasifot/list`)
+      const hasifot=await axios.get(process.env.VUE_APP_SERVER_HOST+`rstsrv/readHasifot/list`)
           storeManager.storeHasifot(this,hasifot.data.Rows);
-      const yields=await axios.get(`http://localhost:58822/rstsrv/readYields/list`)
+      const yields=await axios.get(process.env.VUE_APP_SERVER_HOST+`rstsrv/readYields/list`)
         storeManager.storeYields(this,yields.data.Rows);
     console.log(this.$store)
 ;

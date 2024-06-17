@@ -61,7 +61,7 @@ export default {
 
         },
         async UploadDB(json, place) {
-            const result = await axios.post(`http://localhost:58822/rstsrv/${place}/transaction`, {list: json});
+            const result = await axios.post(process.env.VUE_APP_SERVER_HOST+`${place}/transaction`, {list: json});
             console.log(result);
         },
     },
