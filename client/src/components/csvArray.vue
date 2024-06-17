@@ -42,6 +42,7 @@ export default {
             reader.readAsArrayBuffer(file);
         },
         parseCSV(csvData) {
+            debugger
             if (this.import_file === 'Hasifa') {
                 const jsonData = storeManager.parseHasifotFromCsv(csvData);
                 storeManager.storeHasifot(this,jsonData);

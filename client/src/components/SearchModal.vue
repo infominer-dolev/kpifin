@@ -129,6 +129,11 @@ export default {
   font-size: 1.5rem;
   font-weight: 500;
   color: #0E7E7A; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 66vh;
+  scrollbar-width: none;
+
 }
 .big_order{
   position: relative;

@@ -7,6 +7,9 @@
     <div class="sidebar-item-right" title="שמירת סימולציה" @click="exportToPDF">
         <img src="../assets/icon_file.svg" >
     </div>
+    <div class="sidebar-item-right" title="סימולציה חדשה" @click="openNewPage">
+        <img src="../assets/icon_plusCircle.svg" >
+    </div>
     <div class="sidebar-item-right" title="התנתק">
         <router-link to="/" :class="{'selected-item-right': $route.name==='login'}">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.55vw" viewBox="0 0 36 36" fill="none" alt="Description of SVG" @click="isLogoutModalOpen=!isLogoutModalOpen">
@@ -22,9 +25,10 @@
     <div class="navigar">
         <div>
             <img style="height:8vh" src="../assets/kpilogo.svg" class="kpi_logo"> </div>
+            <div class="simulation-doh-text" >דוח סימולציה</div>
         </div>
         <div>
-            <text>דוח סימולציה</text>
+            
         </div>
         
         
@@ -128,7 +132,9 @@
                 <div class="big_picture3" style="width: 22vw;">
                     <text class="tab_text_row_out">התפלגות חשיפת תיק</text>
                     <br>
-                    <ChartJsD :data_graph="hasifot_p[0]" :width="'450px'" :height="'450px'"></ChartJsD>
+                    <!-- <ChartJsD :data_graph="hasifot_p[0]" :width="'450px'" :height="'450px'"></ChartJsD> -->
+                    <chartJsDNew :data="hasifot_p[0]" :width="'450px'" :height="'450px'"></chartJsDNew>
+                    
                     <text>התפלגות לפי אפיק השקעה בהתאם להערכת תשומת המדד</text>
                 </div>
 
@@ -166,8 +172,10 @@
             <div class="big_picture2" v-if="simulation">
                 <div class="big_picture3" style="width: 43vw; height: 60vh;">
                     <text class="tab_text_row_out">ביצועים השוואתיים</text>
+                    chartJsNewLine
+                    <!-- <ChartJslines :data_graph="gra_p" :height="'450px'" ></ChartJslines> -->
+                    <chartJsNewLine :data_graph="gra_p" :height="'450px'" ></chartJsNewLine>
 
-                    <ChartJslines :data_graph="gra_p" :height="'450px'" ></ChartJslines>
                 </div>
                 <div class="big_picture3" style="width: 43vw; height: 60vh;">
                     <text class="tab_text_row_out">יחס רווח מול שונות</text>
@@ -183,9 +191,12 @@
 
 <script>
 import ChartJslines from './ChartJslines.vue';
+import chartJsNewLine from './chartJsNewLine.vue';
 import ChartJsScar from './ChartJsScar.vue';
-import ChartJsD from './ChartJsD';
+// import ChartJsD from './ChartJsD';
 import html2pdf from 'html2pdf.js';
+import router from '@/router';
+import chartJsDNew from './chartJsDNew.vue';
 
 
 export default {
@@ -227,9 +238,11 @@ export default {
         };
     },
     components: {
-        ChartJslines,
+        // ChartJslines,
         ChartJsScar, 
-        ChartJsD
+        // ChartJsD,
+        chartJsNewLine,
+        chartJsDNew
     },
   
     computed: {
@@ -284,7 +297,9 @@ export default {
                 return Math.sqrt(variance);
             }
         },
-
+        openNewPage(){
+            window.open('/')
+        },
         formatNumber(value, step) {
             // Check if value is not empty and is a number
             if (value !== '' && !isNaN(value)) {
@@ -785,6 +800,15 @@ h1{
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 }
+.simulation-doh-text{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: 500;
+    margin-right: 1vw;
+    font-family: 'Assistant';
+    font-size: 1.5rem;
+}
 
 /* sidebar styles */
 
@@ -830,7 +854,8 @@ h1{
 .navigar {
     position: relative;
     display: flex;
-
+    position: relative;
+    right: 7vw;
     flex-direction: row-reverse;
     
 }
