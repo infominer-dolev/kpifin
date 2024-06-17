@@ -1,0 +1,1 @@
+SELECT * FROM hasifot WHERE PROD_ID={{prodId}};

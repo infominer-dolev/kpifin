@@ -1,0 +1,4 @@
+[
+ {"Name":"deleteYields","Type":"update"},
+ {"Name":"insertYield","Type":"update","ParameterNameForList": "list"}
+]

@@ -1,0 +1,4 @@
+[ 
+ {"Name":"deleteHasifot","Type":"update"},
+ {"Name":"insertHasifa","Type":"update","ParameterNameForList": "list"}
+]
